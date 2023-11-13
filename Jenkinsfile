@@ -37,7 +37,7 @@ pipeline {
           remote.user = ${env.REMOTE_USER}
  
           // 把「CODING 凭据管理」中的「凭据 ID」填入 credentialsId，而 id_rsa 无需修改
-          withCredentials([sshUserPrivateKey(credentialsId: "d792f2e9-2ffc-4fef-bd56-f94dcc934cc7", keyFileVariable: 'id_rsa')]) {
+          withCredentials([sshUserPrivateKey(credentialsId: ${env.SSH_CREDENTIALS_ID}, keyFileVariable: 'id_rsa')]) {
             remote.identityFile = id_rsa
  
             // SSH 登录到服务器，拉取 Docker 镜像

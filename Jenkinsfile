@@ -42,7 +42,7 @@ pipeline {
  
             // SSH 登录到服务器，拉取 Docker 镜像
             // 请在持续集成的环境变量中配置 DOCKER_USER 和 DOCKER_PASSWORD
-            sshCommand remote: remote, sudo: true, command: "apt-get install -y gnupg2 pass"
+            sshCommand remote: remote, sudo: true, command: "yum install -y gnupg2 pass"
             sshCommand remote: remote, command: "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_PASSWORD} $DOCKER_SERVER"
             sshCommand remote: remote, command: "docker pull ${imageName}"
             sshCommand remote: remote, command: "docker stop web | true"

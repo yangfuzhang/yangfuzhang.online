@@ -35,9 +35,12 @@ pipeline {
           remote.host = env.REMOTE_HOST_IP
           remote.port = env.REMOTE_HOST_PORT
           remote.user = env.REMOTE_USER
+
+          echo env.REMOTE_HOST_IP
+          echo env.SSH_CREDENTIALS_ID
  
           // 把「CODING 凭据管理」中的「凭据 ID」填入 credentialsId，而 id_rsa 无需修改
-          withCredentials([sshUserPrivateKey(credentialsId: "${env.SSH_CREDENTIALS_ID}", keyFileVariable: "id_rsa")]) {
+          withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CREDENTIALS_ID, keyFileVariable: 'id_rsa')]) {
             remote.identityFile = id_rsa
  
             // SSH 登录到服务器，拉取 Docker 镜像

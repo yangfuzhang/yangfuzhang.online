@@ -12,9 +12,9 @@ pipeline {
         echo '构建中...'
         script {
           // 请修改 dockerServer、dockerPath、imageName
-          dockerServer = 'codes-farm-docker.pkg.coding.net'
-          dockerPath = '/laravel-demo/laravel-docker'
-          imageName = "${dockerServer}${dockerPath}/laravel-demo:1.0.0"
+          dockerServer = 'limepietech-docker.pkg.coding.net'
+          dockerPath = '/gerenwangzhan/docker'
+          imageName = "${dockerServer}${dockerPath}/astro-blog:1.0.0"
           def customImage = docker.build(imageName)
  
           // 推送 Docker 镜像到仓库
@@ -37,7 +37,7 @@ pipeline {
           remote.user = ${env.REMOTE_USER}
  
           // 把「CODING 凭据管理」中的「凭据 ID」填入 credentialsId，而 id_rsa 无需修改
-          withCredentials([sshUserPrivateKey(credentialsId: "c4af855d-402a-4f38-9c83-f6226ae3441c", keyFileVariable: 'id_rsa')]) {
+          withCredentials([sshUserPrivateKey(credentialsId: "d792f2e9-2ffc-4fef-bd56-f94dcc934cc7", keyFileVariable: 'id_rsa')]) {
             remote.identityFile = id_rsa
  
             // SSH 登录到服务器，拉取 Docker 镜像

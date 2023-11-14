@@ -11,8 +11,7 @@ pipeline {
       steps {
         echo '构建中...'
         script {
-          // 请修改 dockerServer、dockerPath、imageName
-          dockerServer = 'limepietech-docker.pkg.coding.net'
+          dockerServer = env.DOCKER_SERVER
           dockerPath = '/gerenwangzhan/docker'
           imageName = "${dockerServer}${dockerPath}/astro-blog:1.0.0"
           def customImage = docker.build(imageName)
@@ -29,28 +28,40 @@ pipeline {
         echo '部署中...'
         script {
           // 声明服务器信息
-          def remote = [:]
-          remote.name = 'web-server'
-          remote.allowAnyHosts = true
-          remote.host = env.REMOTE_HOST_IP
-          remote.port = env.REMOTE_HOST_PORT
-          remote.user = env.REMOTE_USER
-
-          echo env.REMOTE_HOST_IP
-          echo env.SSH_CREDENTIALS_ID
+          def remoteConfig = [:]
+          remoteConfig.name = 'web-server'
+          remoteConfig.allowAnyHosts = true
+          remoteConfig.host = "${REMOTE_HOST_IP}"
+          remoteConfig.port = "${REMOTE_HOST_PORT}".toInteger()
+          remoteConfig.user = "${REMOTE_USER}"
  
-          // 把「CODING 凭据管理」中的「凭据 ID」填入 credentialsId，而 id_rsa 无需修改
+          // 「CODING 凭据管理」中的「凭据 ID」
           withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CREDENTIALS_ID, keyFileVariable: 'id_rsa')]) {
-            remote.identityFile = id_rsa
- 
-            // SSH 登录到服务器，拉取 Docker 镜像
-            // 请在持续集成的环境变量中配置 DOCKER_USER 和 DOCKER_PASSWORD
-            sshCommand remote: remote, sudo: true, command: "yum install -y gnupg2 pass"
-            sshCommand remote: remote, command: "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_PASSWORD} $DOCKER_SERVER"
-            sshCommand remote: remote, command: "docker pull ${imageName}"
-            sshCommand remote: remote, command: "docker stop web | true"
-            sshCommand remote: remote, command: "docker rm web | true"
-            sshCommand remote: remote, command: "docker run --name web -d ${imageName}"
+            remoteConfig.identityFile = id_rsa
+
+            sshCommand(
+              remote: remoteConfig,
+              command: "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_PASSWORD} ${env.DOCKER_SERVER}",
+              sudo: true,
+            )
+
+            sshCommand(
+              remote: remoteConfig,
+              command: "docker pull ${imageName}",
+              sudo: true,
+            )
+
+            sshCommand(
+              remote: remoteConfig,
+              command: "docker stop web | true",
+              sudo: true,
+            )
+
+            sshCommand(
+              remote: remoteConfig,
+              command: "docker run --name web -d ${imageName}",
+              sudo: true,
+            )
           }
         }
       }

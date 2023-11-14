@@ -61,6 +61,11 @@ import Card from '../components/Card.astro';
 			/>
 		</ul>
 	</main>
+
+	<footer class="footer">
+	  <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2023022007号</a>
+		<span>All rights reserved.</span>
+	</footer>
 </Layout>
 
 <style>
@@ -119,5 +124,27 @@ import Card from '../components/Card.astro';
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 2rem;
 		padding: 0;
+	}
+
+	.footer {
+		width: 100%;
+		padding: 1rem 0;
+		text-align: center;
+		color: #ccc;
+	}
+
+	.footer a {
+		font-size: 14px;
+		text-decoration: none;
+		color: #ccc;
+	}
+
+	.footer a:hover {
+		color: #899ed5;
+	}
+
+	.footer span {
+		font-size: 14px;
+		margin-left: 8px;
 	}
 </style>

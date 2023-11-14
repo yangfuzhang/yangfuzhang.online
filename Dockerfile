@@ -1,10 +1,10 @@
 FROM node:20.0-alpine3.17
 WORKDIR /app
-COPY package.json .
+COPY . .
 RUN npm config set registry https://registry.npm.taobao.org/
 RUN npm install
-COPY . ./
+RUN npm run build
 ENV HOST=0.0.0.0
 ENV PORT=3000
 EXPOSE 3000
-CMD node ./dist/server/entry.mjs
+CMD ["npm", "run", "start"]

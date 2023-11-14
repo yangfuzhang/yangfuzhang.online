@@ -59,7 +59,19 @@ pipeline {
 
             sshCommand(
               remote: remoteConfig,
-              command: "docker run --name web -d ${imageName}",
+              command: "docker rm web",
+              sudo: true,
+            )
+
+            sshCommand(
+              remote: remoteConfig,
+              command: "docker rmi ${imageName}",
+              sudo: true,
+            )
+
+            sshCommand(
+              remote: remoteConfig,
+              command: "docker run --name web -p 3000:3000 -d --restart=always ${imageName}",
               sudo: true,
             )
           }

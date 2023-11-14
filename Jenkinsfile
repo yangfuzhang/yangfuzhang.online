@@ -35,7 +35,7 @@ pipeline {
           remoteConfig.port = "${REMOTE_HOST_PORT}".toInteger()
           remoteConfig.user = "${REMOTE_USER}"
  
-          // 「CODING 凭据管理」中的「凭据 ID」
+          // 腾讯云持续集成需要在服务器设置允许SSL以RSA密钥登录，否则会报错Auth fail
           withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CREDENTIALS_ID, keyFileVariable: 'id_rsa')]) {
             remoteConfig.identityFile = id_rsa
 

@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title="富文本编辑器">
+	<main>
+    <h2 class="title">{frontmatter.title}</h2>
+    <p class="subtitle">
+      <span class="text-gradient">{frontmatter.date} · {frontmatter.minutesRead}</span>
+    </p>
+    <slot />
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: #ccc;
+		font-size: 16px;
+		line-height: 1.6;
+	}
+
+  .title {
+    margin: 0;
+  }
+
+  .subtitle {
+    margin: 0.1rem;
+    font-size: 14px;
+  } 
+</style>

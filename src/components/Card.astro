@@ -1,22 +1,26 @@
 ---
 interface Props {
+	logo: string;
 	title: string;
 	body: string;
 	href: string;
 }
 
-const { href, title, body } = Astro.props;
+const { logo, title, body, href } = Astro.props;
 ---
 
 <li class="link-card">
 	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
+		<div><Fragment set:html={logo} /></div>
+		<div>
+			<h2>
+				{title}
+				<span>&rarr;</span>
+			</h2>
+			<p>
+				{body}
+			</p>
+	  </div>
 	</a>
 </li>
 <style>
@@ -33,6 +37,9 @@ const { href, title, body } = Astro.props;
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	}
 	.link-card > a {
+		display: flex;
+		align-items: center;
+		gap: 16px;
 		width: 100%;
 		text-decoration: none;
 		line-height: 1.4;

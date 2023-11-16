@@ -45,11 +45,6 @@ const { title } = Astro.props;
 
 		<!-- 内容区域 -->
 		<slot />
-
-		<footer class="footer">
-			<a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2023022007号</a>
-			<span>All rights reserved.</span>
-		</footer>
 	</body>
 </html>
 <style is:global>
@@ -69,8 +64,12 @@ const { title } = Astro.props;
 		background: #13151a;
 		background-size: 224px;
 	}
+	html.dark {
+		background: #13151a;
+	}
 	a {
 		text-decoration: none;
+		color: #fff;
 	}
 	img {
 		max-width: 100%;
@@ -126,27 +125,5 @@ const { title } = Astro.props;
 
 	.menu li a {
 		color: #fff;
-	}
-
-	.footer {
-		bottom: 0;
-		width: 100%;
-		padding: 1rem 0;
-		text-align: center;
-		color: #ccc;
-	}
-
-	.footer a {
-		font-size: 14px;
-		color: #ccc;
-	}
-
-	.footer a:hover {
-		color: #899ed5;
-	}
-
-	.footer span {
-		font-size: 14px;
-		margin-left: 8px;
 	}
 </style>

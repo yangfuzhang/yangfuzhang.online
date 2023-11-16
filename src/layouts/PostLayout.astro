@@ -1,16 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
 ---
-
 <Layout title="富文本编辑器">
 	<main>
     <h2 class="title">{frontmatter.title}</h2>
     <p class="subtitle">
-      <span class="text-gradient">{frontmatter.date} · {frontmatter.minutesRead}</span>
+      <span class="text-gradient">{frontmatter.pubDate} · {frontmatter.minutesRead}</span>
     </p>
     <slot />
+
+    <a href={frontmatter.prevUrl}>
+      <span class="text-gradient">> cd ..</span>
+    </a>
 	</main>
 </Layout>
 

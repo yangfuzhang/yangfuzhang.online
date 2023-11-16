@@ -1,9 +1,11 @@
 ---
-layout: ../layouts/PostLayout.astro
+layout: ../../layouts/PostLayout.astro
 title: Prosemirror核心概念
 author: yangfuzhang
 description: 富文本编辑器核心技术
-date: Nov. 15
+pubDate: Nov. 15
+prevUrl: /rich-editor
+slug: core-concept
 ---
 
 This guide describes the various concepts used in the library, and how they relate to each other. To get a complete picture of the system, it is recommended to go through it in the order it is presented in, at least up to the view component section.

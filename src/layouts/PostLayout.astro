@@ -3,8 +3,8 @@ import Layout from '../layouts/BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
 ---
-<Layout title="富文本编辑器">
-	<main>
+<Layout title={frontmatter.title}>
+	<article>
     <h2 class="title">{frontmatter.title}</h2>
     <p class="subtitle">
       <span class="text-gradient">{frontmatter.pubDate} · {frontmatter.minutesRead}</span>
@@ -14,11 +14,11 @@ const { frontmatter } = Astro.props;
     <a href={frontmatter.prevUrl}>
       <span class="text-gradient">> cd ..</span>
     </a>
-	</main>
+	</article>
 </Layout>
 
 <style>
-	main {
+	article {
 		margin: auto;
 		padding: 1rem;
 		width: 800px;

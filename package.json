@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev --port 3000 --host",
+    "lint": "eslint ./src/**/*.astro",
     "check": "astro check",
     "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
     "prepare": "husky install"
   },
   "dependencies": {

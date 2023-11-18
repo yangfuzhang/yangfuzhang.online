@@ -1,5 +1,4 @@
 ---
-// import { ViewTransitions } from 'astro:transitions';
 import SiteHeader from '../components/SiteHeader.astro';
 
 interface Props {
@@ -18,10 +17,7 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<!-- <ViewTransitions /> -->
-	</head>
-	<body>
-		<!-- 添加is:inline, 阻塞渲染，避免页面闪烁 -->
+    <!-- 添加is:inline, 阻塞渲染，避免页面闪烁 -->
 		<script is:inline>
 			const theme = (() => {
 				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
@@ -39,7 +35,8 @@ const { title } = Astro.props;
 				document.documentElement.classList.add("dark");
 			}
 		</script>
-
+	</head>
+	<body>
     <SiteHeader />
 
 		<!-- 内容区域 -->
@@ -50,8 +47,26 @@ const { title } = Astro.props;
 <style is:global>
 	:root {
 		--primary-bg: #fff;
+		--secondary-bg: #f1f1f1;
 		--primary-text-color: #333;
+		--secondary-text-color: #fff;
 		--svg-icon-color: 49, 10, 101;
+		--accent: 126, 48, 224;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 50%,
+			white 60%
+		);
+	}
+
+	:root.dark {
+		--primary-bg: #13151a;
+		--secondary-bg: #23262d;
+		--primary-text-color: #eee;
+		--svg-icon-color: 224, 204, 250;
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;
@@ -61,12 +76,6 @@ const { title } = Astro.props;
 			rgb(var(--accent-light)) 30%,
 			white 60%
 		);
-	}
-
-	:root.dark {
-		--primary-bg: #13151a;
-		--primary-text-color: #eee;
-		--svg-icon-color: 224, 204, 250;
 	}
 
 	html {

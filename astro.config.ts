@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from "@astrojs/node";
+import vue from "@astrojs/vue";
 import { remarkReadingTime } from './remark-reading-time.mjs';
 
 // https://astro.build/config
@@ -9,6 +10,7 @@ export default defineConfig({
     mode: "standalone"
   }),
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [remarkReadingTime]
   },
+  integrations: [vue()]
 });

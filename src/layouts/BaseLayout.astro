@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+// import { ViewTransitions } from 'astro:transitions';
 import SiteHeader from '../components/SiteHeader.astro';
 
 interface Props {
@@ -18,7 +18,7 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
+		<!-- <ViewTransitions /> -->
 	</head>
 	<body>
     <SiteHeader />
@@ -27,8 +27,12 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+
 <style is:global>
 	:root {
+		--primary-bg: #fff;
+		--primary-text-color: #333;
+		--svg-icon-color: 49, 10, 101;
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;
@@ -39,13 +43,17 @@ const { title } = Astro.props;
 			white 60%
 		);
 	}
+
+	:root.dark {
+		--primary-bg: #13151a;
+		--primary-text-color: #eee;
+		--svg-icon-color: 224, 204, 250;
+	}
+
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
 		background-size: 224px;
-	}
-	html.dark {
-		background: #13151a;
+		background: var(--primary-bg);
 	}
 	a {
 		text-decoration: none;

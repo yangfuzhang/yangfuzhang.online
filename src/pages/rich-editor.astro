@@ -1,53 +1,8 @@
 ---
-import Layout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
 import { getCollection } from 'astro:content';
 
 const prosemirrorEntries = await getCollection('prosemirror');
 ---
 
-<Layout title="富文本编辑器">
-  <main>
-    {
-      prosemirrorEntries.map(async prosemirrorPost => {
-        const { remarkPluginFrontmatter } = await prosemirrorPost.render();
-
-        return (
-          <a href={`/prosemirror/${prosemirrorPost.slug}`}>
-            <div class="post-item">
-              <p>{prosemirrorPost.data.title}</p>
-              <div class="post-metadata">
-                <span class="text-gradient">{prosemirrorPost.data.pubDate}</span>
-                <span class="text-gradient">{remarkPluginFrontmatter.minutesRead}</span>
-              </div>
-            </div>
-          </a>
-        )
-      })
-    }
-  </main>
-</Layout>
-
-<style lang="less">
-main {
-  margin: auto;
-  padding: 1rem;
-  width: 800px;
-  max-width: calc(100% - 2rem);
-  color: var(--primary-text-color);
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.post-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--primary-text-color);
-
-  .post-metadata {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 14px;
-  }
-}
-</style>
+<PostList title="代码编辑器" posts={prosemirrorEntries} baseUrl='prosemirror'>

@@ -8,6 +8,15 @@ const prosemirrorCollection = defineCollection({
   }),
 });
 
+const vscodeCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.string(),
+  }),
+});
+
 export const collections = {
   'prosemirror': prosemirrorCollection,
+  'vscode': vscodeCollection,
 };

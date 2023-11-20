@@ -29,7 +29,7 @@
   </ul>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from "vue"
 
 const isDark = ref(true)

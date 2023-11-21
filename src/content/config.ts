@@ -16,7 +16,25 @@ const vscodeCollection = defineCollection({
   }),
 });
 
+const reactCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.string(),
+  }),
+});
+
+const vueCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.string(),
+  }),
+});
+
 export const collections = {
   'prosemirror': prosemirrorCollection,
   'vscode': vscodeCollection,
+  'react': reactCollection,
+  'vue': vueCollection,
 };

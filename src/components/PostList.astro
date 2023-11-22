@@ -46,13 +46,26 @@ main {
 .post-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.8rem;
   color: var(--primary-text-color);
 
   .post-metadata {
     display: flex;
     gap: 0.5rem;
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .post-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 1rem;
+
+    p {
+      margin: 0;
+    }
   }
 }
 </style>

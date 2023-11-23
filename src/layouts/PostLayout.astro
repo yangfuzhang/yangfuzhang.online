@@ -4,7 +4,7 @@ import Layout from '../layouts/BaseLayout.astro';
 const { frontmatter } = Astro.props;
 ---
 <Layout title={frontmatter.title}>
-	<article>
+	<article class="markdown-post">
     <h2 class="title">{frontmatter.title}</h2>
     <p class="subtitle">
       <span class="text-gradient">{frontmatter.pubDate} · {frontmatter.minutesRead}</span>
@@ -17,8 +17,8 @@ const { frontmatter } = Astro.props;
 	</article>
 </Layout>
 
-<style>
-	article {
+<style lang="less" is:global>
+	article.markdown-post {
 		margin: auto;
 		padding: 1rem;
 		width: 800px;
@@ -26,14 +26,32 @@ const { frontmatter } = Astro.props;
 		color: var(--primary-text-color);
 		font-size: 16px;
 		line-height: 1.6;
+
+    .title {
+      margin: 0;
+    }
+
+    .subtitle {
+      margin: 0.1rem;
+      font-size: 14px;
+    } 
+
+    a {
+      color: var(--link-color);
+    }
+
+    blockquote {
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1em 0;
+      padding: 0.5rem 10px 0.5rem;
+      quotes: "\201C""\201D""\2018""\2019";
+    }
+
+    pre {
+      padding: 1rem;
+    }
 	}
 
-  .title {
-    margin: 0;
-  }
-
-  .subtitle {
-    margin: 0.1rem;
-    font-size: 14px;
-  } 
+  
 </style>

@@ -11,7 +11,7 @@ slug: basic-usage
 
 Prosemirror并不是一个开箱即用的富文本编辑器，在项目中直接使用还是有一定的理解和开发成本的，一个比较流行且好用的基于Prosemirror的封装是<a href="https://tiptap.dev/" target="_blank">tiptap</a>，该项目也是<a href="https://github.com/ueberdosis/tiptap" target="_blank">开源</a>的，也是一个比较好的Prosemirror学习资源。
 
-本文不对tiptap做过多介绍，仅以vite项目中如何直接使用Prosemirror为例，介绍Prosemirror的基本使用。
+本文不对tiptap作过多介绍，仅介绍如何在项目中直接使用Prosemirror。
 
 # 初始化项目
 Prosemirror是用原生js开发的，并不依赖特定的前端框架，选择你自己喜欢或熟悉的框架初始化项目即可。

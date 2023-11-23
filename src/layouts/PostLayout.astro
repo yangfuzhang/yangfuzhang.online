@@ -38,6 +38,10 @@ const { frontmatter } = Astro.props;
 
     a {
       color: var(--link-color);
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     blockquote {
@@ -46,6 +50,7 @@ const { frontmatter } = Astro.props;
       margin: 1em 0;
       padding: 0.5rem 10px 0.5rem;
       quotes: "\201C""\201D""\2018""\2019";
+      color: var(--markdown-blockquote-color);
     }
 
     pre {

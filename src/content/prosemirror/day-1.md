@@ -18,7 +18,7 @@ Prosemirror是用原生js开发的，并不依赖特定的前端框架，选择�
 
 ### 安装Prosemirror相关依赖
 ```bash
-pnpm add prosemirror-model prosemirror-state prosemirror-view prosemirror-schema-list prosemirror-schema-basic prosemirror-example-setup
+pnpm add prosemirror-model prosemirror-state prosemirror-view prosemirror-schema-basic prosemirror-schema-list prosemirror-example-setup
 ```
 因为Prosemirror的代码都分散在不同的仓库，依赖比较多😂，这里作一个简单的介绍：
 
@@ -26,27 +26,38 @@ pnpm add prosemirror-model prosemirror-state prosemirror-view prosemirror-schema
 > prosemirror-model：提供文档模型，包括文档树、节点、标记、文本等，是Prosemirror的核心.<br>
 > prosemirror-state：提供文档状态管理，包括文档树、文档视图、文档变化等。<br>
 > prosemirror-view：提供文档视图，包括文档渲染、文档交互等。<br>
-> prosemirror-schema-list：提供HTML列表的schema，包括列表节点、列表标记等。<br>
 > prosemirror-schema-basic：提供基础schema，包括块节点、块标记等。<br>
+> prosemirror-schema-list：提供HTML列表的schema，包括列表节点、列表标记等。<br>
 > prosemirror-example-setup：提供一个基本的编辑器，包括菜单、快捷键等。<br>
 
 ### 使用
 ```js
+import { Schema } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { schema } from 'prosemirror-schema-basic';
+import {addListNodes} from "prosemirror-schema-list"
 import { exampleSetup } from 'prosemirror-example-setup';
 
+// 创建schema
 const exampleSchema = new Schema({
   nodes: addListNodes(schema.spec.nodes, "paragraph block*", "block"),
   marks: schema.spec.marks
 })
 
+// 编辑器状态初始化
+const exampleState = EditorState.create({
+  doc: DOMParser.fromSchema(exampleSchema).parse(initialContent),
+  plugins: [...exampleSetup({schema: exampleSchema}), myPlugin]
+})
+
+// 编辑器初始内容
+const initialContent = new window.DOMParser().parseFromString(`<p>Hello world!<strong>bold text</strong></p>`, "text/html")
+
+// 创建编辑器视图，并挂载到DOM元素上
 window.view = new EditorView(document.querySelector("#editor"), {
-  state: EditorState.create({
-    doc: DOMParser.fromSchema(exampleSchema).parse(initialContent),
-    plugins: [...exampleSetup({schema: exampleSchema}), myPlugin]
-  }),
+  state: exampleState,
+  props: {},
 }
 ```
 

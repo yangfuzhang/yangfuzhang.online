@@ -39,11 +39,14 @@ import { schema } from 'prosemirror-schema-basic';
 import {addListNodes} from "prosemirror-schema-list"
 import { exampleSetup } from 'prosemirror-example-setup';
 
-// 创建schema
+// 定义schema
 const exampleSchema = new Schema({
   nodes: addListNodes(schema.spec.nodes, "paragraph block*", "block"),
   marks: schema.spec.marks
 })
+
+// 编辑器初始内容
+const initialContent = new window.DOMParser().parseFromString(`<p>Hello world!<strong>bold text</strong></p>`, "text/html")
 
 // 编辑器状态初始化
 const exampleState = EditorState.create({
@@ -51,8 +54,6 @@ const exampleState = EditorState.create({
   plugins: [...exampleSetup({schema: exampleSchema}), myPlugin]
 })
 
-// 编辑器初始内容
-const initialContent = new window.DOMParser().parseFromString(`<p>Hello world!<strong>bold text</strong></p>`, "text/html")
 
 // 创建编辑器视图，并挂载到DOM元素上
 window.view = new EditorView(document.querySelector("#editor"), {

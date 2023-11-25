@@ -32,11 +32,11 @@ pnpm add prosemirror-model prosemirror-state prosemirror-view prosemirror-schema
 
 ### 使用
 ```js
-import { Schema } from 'prosemirror-model';
+import { Schema, DOMParser } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { schema } from 'prosemirror-schema-basic';
-import {addListNodes} from "prosemirror-schema-list"
+import { addListNodes } from "prosemirror-schema-list"
 import { exampleSetup } from 'prosemirror-example-setup';
 
 // 定义schema

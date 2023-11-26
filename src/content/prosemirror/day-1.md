@@ -9,7 +9,7 @@ slug: basic-usage
 ---
 > Prosemirror官方文档：<a class="markdown-link" href="https://prosemirror.net" target="_blank">传送门</a>
 
-Prosemirror并不是一个开箱即用的富文本编辑器，在项目中直接使用还是有一定的理解和开发成本的，一个比较流行且好用的基于Prosemirror的封装是<a href="https://tiptap.dev/" target="_blank">tiptap</a>，该项目也是<a href="https://github.com/ueberdosis/tiptap" target="_blank">开源</a>的，也是一个比较好的Prosemirror学习资源。
+Prosemirror并不是一个开箱即用的富文本编辑器，在项目中直接使用还是有一定的理解和开发成本的，一个比较流行且好用的基于Prosemirror的封装是<a href="https://tiptap.dev/" target="_blank">tiptap</a>，该项目是<a href="https://github.com/ueberdosis/tiptap" target="_blank">开源</a>的，也是一个比较好的Prosemirror学习资源。
 
 本文不对tiptap作过多介绍，仅介绍如何在项目中直接使用Prosemirror。
 
@@ -33,7 +33,7 @@ pnpm add prosemirror-model prosemirror-state prosemirror-view prosemirror-schema
 ### 使用
 ```js
 import { Schema, DOMParser } from 'prosemirror-model';
-import { EditorState } from 'prosemirror-state';
+import { EditorState, Plugin } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { schema } from 'prosemirror-schema-basic';
 import { addListNodes } from "prosemirror-schema-list"
@@ -46,10 +46,27 @@ const exampleSchema = new Schema({
 })
 
 // 编辑器初始内容
+// 注意：window.DOMParser是浏览器原生的DOMParser对象
+// MDN文档：https://developer.mozilla.org/en-US/docs/Web/API/DOMParser
 const initialContent = new window.DOMParser().parseFromString(`<p>Hello world!<strong>bold text</strong></p>`, "text/html")
+
+// 自定义插件
+const myPlugin = new Plugin({
+  key: 'myPlugin',
+  props: {},
+  view(editorView) {
+    update(view, prevState) {},
+    destroy() {},
+  },
+  state: {
+    init() {},
+    apply(tr, value, oldState, newState) {},
+  }
+})
 
 // 编辑器状态初始化
 const exampleState = EditorState.create({
+  // 注意：这里的DOMParser是prosemirror-model提供的，需要与浏览器原生的DOMParser对象区分开来
   doc: DOMParser.fromSchema(exampleSchema).parse(initialContent),
   plugins: [...exampleSetup({schema: exampleSchema}), myPlugin]
 })
@@ -58,7 +75,7 @@ const exampleState = EditorState.create({
 // 创建编辑器视图，并挂载到DOM元素上
 window.view = new EditorView(document.querySelector("#editor"), {
   state: exampleState,
-  props: {},
+  // 其他props
 }
 ```
 

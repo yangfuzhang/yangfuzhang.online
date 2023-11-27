@@ -446,9 +446,10 @@ useLayoutEffect(() => {
 
 > 利用useRef解决闭包问题（参见useEffect）
 
-aHooks使用useRef实现的useLatest，解决闭包问题：https://github.com/alibaba/hooks/blob/master/packages/hooks/src/useLatest/index.ts
+aHooks使用useRef实现的useLatest，解决闭包问题：[Github issue](https://github.com/alibaba/hooks/blob/master/packages/hooks/src/useLatest/index.ts)
 
 > useRef另一个典型应用是保存和操作Dom
+
 ```javascript
 const inputRef = useRef(null)
 

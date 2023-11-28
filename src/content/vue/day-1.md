@@ -8,19 +8,23 @@ prevUrl: /vue
 slug: vue-reactive
 ---
 
-This guide describes the various concepts used in the library, and how they relate to each other. To get a complete picture of the system, it is recommended to go through it in the order it is presented in, at least up to the view component section.
+### Object.defineProperty()
 
-![prosemirror mvc](/prosemirror-mvc.png)
+Vue2.0 响应式系统的核心是通过 Object.defineProperty() 来劫持各个属性的 get 和 set，在 get 和 set 里进行依赖收集和通知。
 
-### 视图 prosemirror-view
-ProseMirror's view module displays a given editor state in the DOM, and handles user events.
+Object.defineProperty() 接收三个参数：
 
-### 模型 prosemirror-model
-This module defines ProseMirror's content model, the data structures used to represent and work with documents.
+- obj：需要定义属性的对象
+- key：属性的 key
+- descriptor：属性的描述对象
 
-### 状态 prosemirror-state
-This module implements the state object of a ProseMirror editor, along with the representation of the selection and the plugin abstraction.
+### Proxy和Reflect
 
-### 变更 prosemirror-transform
-This module defines a way of modifying documents that allows changes to be recorded, replayed, and reordered. You can read more about transformations in the guide.
+与Vue2.0响应式系统不同的是，Vue3.0 响应式系统是基于 Proxy 实现的。
+
+Proxy 是一个 ES6 新增的数据类型，它可以拦截并修改某些操作，比如：读取属性、设置属性、删除属性、调用对象方法等。
+
+Reflect 是一个内置对象，提供操作对象属性和方法的API。
+
+
 

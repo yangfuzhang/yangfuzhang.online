@@ -12,6 +12,10 @@ slug: vue-reactive
 
 Vue2.0 响应式系统的核心是通过 Object.defineProperty() 来劫持各个属性的 get 和 set，在 get 和 set 里进行依赖收集和通知。
 
+```javascript
+Object.defineProperty(obj, key, descriptor)
+```
+
 Object.defineProperty() 接收三个参数：
 
 - obj：需要定义属性的对象
@@ -22,9 +26,12 @@ Object.defineProperty() 接收三个参数：
 
 与Vue2.0响应式系统不同的是，Vue3.0 响应式系统是基于 Proxy 实现的。
 
-Proxy 是一个 ES6 新增的数据类型，它可以拦截并修改某些操作，比如：读取属性、设置属性、删除属性、调用对象方法等。
+Proxy 是一个 ES6 新增的数据类型，它可以拦截并修改某些操作，比如：读取属性、设置属性、删除属性、调用对象方法等，属于一种“元编程”（meta programming），即对编程语言进行编程。
 
-Reflect 是一个内置对象，提供操作对象属性和方法的API。
+```javascript
+const proxy = new proxy(target, handler)
+```
+ 
 
 
 

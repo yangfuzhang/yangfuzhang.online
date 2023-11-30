@@ -4,7 +4,7 @@ title: React Hooks 用法举例
 author: yangfuzhang
 description: React Hooks用法举例
 pubDate: Nov. 27
-prevUrl: /react
+prevUrl: /react-posts
 slug: react-hooks-example
 ---
 

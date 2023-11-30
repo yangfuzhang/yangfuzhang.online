@@ -59,7 +59,7 @@ pipeline {
 
             sshCommand(
               remote: remoteConfig,
-              command: "docker rm web",
+              command: "docker rm web | true",
               sudo: true,
             )
 

@@ -4,7 +4,7 @@ title: Vue响应式原理
 author: yangfuzhang
 description: Vue响应式原理
 pubDate: Nov. 21
-prevUrl: /vue
+prevUrl: /vue-posts
 slug: vue-reactive
 ---
 

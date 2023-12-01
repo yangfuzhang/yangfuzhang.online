@@ -15,10 +15,62 @@
 
 <script lang="ts">
 const toggleThemeBtn = document.querySelector(".toggle-theme")
-
-toggleThemeBtn?.addEventListener("click", () => {
+const getTheme = () => {
+  if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+    return localStorage.getItem("theme");
+  }
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return "dark";
+  }
+  return "light";
+}
+const toggleTheme = () => {
   document.documentElement.classList.toggle("dark")
   localStorage.setItem("theme", document.documentElement.classList.contains("dark")? "dark" : "light")
+}
+
+toggleThemeBtn?.addEventListener("click", (event) => {
+  const isAppearanceTransition = document.startViewTransition
+    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const isDark = getTheme() === 'dark'
+  console.log('isdark', isDark)
+
+  if(!isAppearanceTransition) {
+    toggleTheme()
+    return
+  }
+
+  const x = event.clientX
+  const y = event.clientY
+  const endRadius = Math.hypot(
+    Math.max(x, innerWidth - x),
+    Math.max(y, innerHeight - y),
+  )
+
+  const transition = document.startViewTransition(async () => {
+    toggleTheme()
+  })
+
+  transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ]
+      document.documentElement.animate(
+        {
+          clipPath: isDark
+            ? clipPath
+            : [...clipPath].reverse(),
+        },
+        {
+          duration: 400,
+          easing: 'ease-out',
+          pseudoElement: isDark
+            ? '::view-transition-new(root)'
+            : '::view-transition-old(root)',
+        },
+      )
+    })
 })
 </script>
 

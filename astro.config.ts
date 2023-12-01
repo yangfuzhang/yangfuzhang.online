@@ -14,6 +14,6 @@ export default defineConfig({
     remarkPlugins: [remarkReadingTime]
   },
   integrations: [vue(), UnoCSS({
-    injectReset: true,
+    // injectReset: true,
   })]
 });

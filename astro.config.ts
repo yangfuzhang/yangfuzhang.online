@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import node from "@astrojs/node";
 import vue from "@astrojs/vue";
+import UnoCSS from 'unocss/astro'
 import { remarkReadingTime } from './remark-reading-time.mjs';
 
 // https://astro.build/config
@@ -12,5 +13,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkReadingTime]
   },
-  integrations: [vue()]
+  integrations: [vue(), UnoCSS({
+    injectReset: true,
+  })]
 });

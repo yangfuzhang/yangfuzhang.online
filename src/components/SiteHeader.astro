@@ -1,9 +1,9 @@
 ---
-import SiteMenu from "./SiteMenu.vue";
+import SiteMenu from "./SiteMenu.astro";
 ---
 <header>
   <h3 class="site-title"><a href="/">代码<span class="text-gradient">笔记</span></a></h3>
-  <SiteMenu client:only />
+  <SiteMenu />
 </header>
 
 <style lang="less">

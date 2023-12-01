@@ -1,0 +1,42 @@
+---
+// SiteMenu.astro
+---
+  <ul class="site-menu">
+    <li class="toggle-theme">
+      <span class="i-carbon-sun color-black dark:i-carbon-moon dark:color-white"></span>
+    </li>
+    <li>
+      <a href="https://github.com/yangfuzhang" target="_blank">
+        <span class="i-carbon-logo-github color-black dark:color-white"></span>
+      </a>
+    </li>
+  </ul>
+</template>
+
+<script lang="ts">
+const toggleThemeBtn = document.querySelector(".toggle-theme")
+
+toggleThemeBtn?.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark")
+  localStorage.setItem("theme", document.documentElement.classList.contains("dark")? "dark" : "light")
+})
+</script>
+
+<style lang="less">
+ .site-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  li {
+    list-style: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+</style>

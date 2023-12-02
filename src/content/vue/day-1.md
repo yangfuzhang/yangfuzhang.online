@@ -19,8 +19,12 @@ Object.defineProperty(obj, key, descriptor)
 Object.defineProperty() 接收三个参数：
 
 - obj：需要定义属性的对象
-- key：属性的 key
-- descriptor：属性的描述对象
+- key：要定义或修改的属性的名称
+- descriptor：被定义或修改的属性描述符
+
+比较核心的是 descriptor，它有很多可选键值，具体可参阅<a target="_blank" href='https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty'>文档</a>。这里我们最关心的是 get 和 set，get 是一个给属性提供的 getter 方法，当我们访问了该属性的时候会触发 getter 方法；set 是一个给属性提供的 setter 方法，当我们对该属性做修改的时候会触发 setter 方法。
+
+**Vue2.0 响应式实现的基本流程如下：** 初始化时，通过Object.defineProperty()定义data中每个属性的get方法，get方法会在读取属性值时调用，该方法实例化了一个Dep类，进行依赖收集，每个依赖都是一个Watcher实例。同时，定义每个属性的set方法，该方法会在属性值变化时调用，通过调用Dep类的notify方法，通知所有依赖Wathcer调用update方法进行更新。
 
 ### Proxy和Reflect
 

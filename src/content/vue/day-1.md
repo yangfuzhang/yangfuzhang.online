@@ -26,7 +26,7 @@ Object.defineProperty() 接收三个参数：
 
 **Vue2.0 响应式实现的基本流程如下：** 初始化时，通过Object.defineProperty()定义data中每个属性的get方法，get方法会在读取属性值时调用，该方法实例化了一个Dep类，进行依赖收集，每个依赖都是一个Watcher实例。同时，定义每个属性的set方法，该方法会在属性值变化时调用，通过调用Dep类的notify方法，通知所有依赖Wathcer调用update方法进行更新。
 
-### Proxy和Reflect
+### Proxy
 
 与Vue2.0响应式系统不同的是，Vue3.0 响应式系统是基于 Proxy 实现的。
 

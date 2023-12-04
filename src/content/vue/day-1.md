@@ -35,6 +35,11 @@ Proxy 是一个 ES6 新增的数据类型，它可以拦截并修改某些操作
 ```javascript
 const proxy = new proxy(target, handler)
 ```
+
+Proxy 主要解决了Object.defineProperty()存在的如下几个问题：
+- 需要深度遍历对象的每一个属性进行劫持，对象嵌套过深时存在性能问题
+- 检测不到对象的添加和删除，需要通过vm.$set方法作特殊处理
+- 无法监控到数组下标的变化，需要对数组方法重写来实现响应式
  
 
 

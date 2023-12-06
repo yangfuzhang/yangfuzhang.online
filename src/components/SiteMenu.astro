@@ -33,7 +33,6 @@ toggleThemeBtn?.addEventListener("click", (event) => {
   const isAppearanceTransition = document.startViewTransition
     && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const isDark = getTheme() === 'dark'
-  console.log('isdark', isDark)
 
   if(!isAppearanceTransition) {
     toggleTheme()

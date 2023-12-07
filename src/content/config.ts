@@ -32,9 +32,18 @@ const vueCollection = defineCollection({
   }),
 });
 
+const snippetsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.string(),
+  }),
+});
+
 export const collections = {
   'prosemirror': prosemirrorCollection,
   'vscode': vscodeCollection,
   'react': reactCollection,
   'vue': vueCollection,
+  'snippets': snippetsCollection,
 };

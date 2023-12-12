@@ -49,6 +49,14 @@ const exampleSchema = new Schema({
 
 prosemirror的选区系统。
 
+```typescript
+new Selection(
+  $anchor: ResolvedPos,
+  $head: ResolvedPos,
+  ranges: readonly SelectionRange[]
+)
+```
+
 ### slice
 
 ```typescript

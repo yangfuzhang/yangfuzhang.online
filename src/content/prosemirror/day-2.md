@@ -81,7 +81,7 @@ step是文档修改的最小单位，一个tranaction可以包含多个steps，�
 
 ### commands
 
-编辑器命令，可以通过keymap建立键盘快捷键与命令之间的映射。
+编辑器命令，可以通过keymap建立键盘快捷键与命令之间的映射。Command函数接收state和可选的dispatch作为参数，返回boolean。
 
 ### plugins
 

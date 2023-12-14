@@ -5,7 +5,7 @@ author: yangfuzhang
 description: Prosemirror自定义视图
 pubDate: Dec. 14
 prevUrl: /rich-editor
-slug: core-concepts
+slug: custom-view
 ---
 
 Prosemirror有三种自定义视图的方式

@@ -1,9 +1,9 @@
 FROM node:21.0-alpine3.18
 WORKDIR /app
 COPY . .
-RUN npm config set registry https://registry.npm.taobao.org/
+RUN npm config set registry http://registry.npmjs.org/
 RUN npm install -g npm
-RUN npm install -g pnpm@8.14.1
+RUN npm install -g pnpm
 RUN pnpm install
 RUN pnpm run build
 ENV HOST=0.0.0.0

@@ -3,7 +3,7 @@ layout: ../../layouts/PostLayout.astro
 title: 阿里云Docker镜像加速配置
 author: yangfuzhang
 description: Docker修改镜像地址
-pubDate: Dec. 23
+pubDate: Dec. 24, 2023
 prevUrl: /snippets-posts
 slug: docker-registry
 ---

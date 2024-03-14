@@ -2,7 +2,6 @@ FROM node:21.0-alpine3.18
 WORKDIR /app
 COPY . .
 RUN npm config set registry https://registry.npmmirror.com
-RUN npm install -g npm
 RUN npm install -g pnpm
 RUN pnpm install
 RUN pnpm run build

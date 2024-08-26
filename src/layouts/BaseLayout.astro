@@ -1,8 +1,8 @@
 ---
-import SiteHeader from '../components/SiteHeader.astro';
+import SiteHeader from "../components/SiteHeader.astro";
 
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -10,146 +10,161 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
     <!-- 添加is:inline, 阻塞渲染，避免页面闪烁 -->
-		<script is:inline>
-			const theme = (() => {
-				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-					return localStorage.getItem("theme");
-				}
-				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-					return "dark";
-				}
-				return "light";
-			})();
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
 
-			if (theme === "light") {
-				document.documentElement.classList.remove("dark");
-			} else {
-				document.documentElement.classList.add("dark");
-			}
-		</script>
-	</head>
-	<body>
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+  </head>
+  <body>
     <SiteHeader />
 
-		<!-- 内容区域 -->
-		<slot />
-		<!-- 统计代码 -->
-		<script async src="https://stat.yangfuzhang.online/script.js" data-website-id="99a18c70-6364-4662-8b20-ddf952491614"></script>
-		<!-- 在线客服 -->
+    <!-- 内容区域 -->
+    <slot />
+    <!-- 统计代码 -->
+    <script
+      async
+      src="https://stat.yangfuzhang.online/script.js"
+      data-website-id="99a18c70-6364-4662-8b20-ddf952491614"></script>
+    <!-- 谷歌广告 -->>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9752931686372898"
+      crossorigin="anonymous"></script>
+    <!-- 在线客服 -->
     <script>
-      (window as any).chatwootSettings = {"position":"right","type":"standard","launcherTitle":"联系我们"};
-      (function(d,t) {
-        var BASE_URL="https://chatwoot.yangfuzhang.online";
-        var g:any= d.createElement(t),s:any=d.getElementsByTagName(t)[0];
-        g.src=BASE_URL+"/packs/js/sdk.js";
+      (window as any).chatwootSettings = {
+        position: "right",
+        type: "standard",
+        launcherTitle: "联系我们",
+      };
+      (function (d, t) {
+        var BASE_URL = "https://chatwoot.yangfuzhang.online";
+        var g: any = d.createElement(t),
+          s: any = d.getElementsByTagName(t)[0];
+        g.src = BASE_URL + "/packs/js/sdk.js";
         g.defer = true;
         g.async = true;
-        s.parentNode.insertBefore(g,s);
-        g.onload=function(){
+        s.parentNode.insertBefore(g, s);
+        g.onload = function () {
           (window as any).chatwootSDK.run({
-            websiteToken: 'P7sT8y3RFsrUtaGUuDJzausB',
-            baseUrl: BASE_URL
-          })
-        }
-      })(document,"script");
+            websiteToken: "P7sT8y3RFsrUtaGUuDJzausB",
+            baseUrl: BASE_URL,
+          });
+        };
+      })(document, "script");
     </script>
-    
-	</body>
+  </body>
 </html>
 
 <style is:global>
-	:root {
-		--primary-bg: #fff;
-		--secondary-bg: #f1f1f1;
-		--primary-text-color: #333;
-		--secondary-text-color: #fff;
-		--link-color: #1a0dab;
-		--markdown-blockquote-color: #555;
-		--accent: 126, 48, 224;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 50%,
-			white 60%
-		);
-	}
+  :root {
+    --primary-bg: #fff;
+    --secondary-bg: #f1f1f1;
+    --primary-text-color: #333;
+    --secondary-text-color: #fff;
+    --link-color: #1a0dab;
+    --markdown-blockquote-color: #555;
+    --accent: 126, 48, 224;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 50%,
+      white 60%
+    );
+  }
 
-	:root.dark {
-		--primary-bg: #13151a;
-		--secondary-bg: #23262d;
-		--primary-text-color: #eee;
-		--link-color: rgb(173, 137, 226);
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
+  :root.dark {
+    --primary-bg: #13151a;
+    --secondary-bg: #23262d;
+    --primary-text-color: #eee;
+    --link-color: rgb(173, 137, 226);
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
 
-	html {
-		font-family: system-ui, sans-serif;
-		background-size: 224px;
-		background: var(--primary-bg);
-	}
-	a {
-		text-decoration: none;
-		color: #fff;
-	}
-	
-	img {
-		max-width: 100%;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
+  html {
+    font-family: system-ui, sans-serif;
+    background-size: 224px;
+    background: var(--primary-bg);
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
 
-	@media (prefers-reduced-motion:no-preference) {
-		::view-transition-old(root),
-		::view-transition-new(root) {
-			animation: none;
-			mix-blend-mode: normal;
-			display: block;
-		}
-		::view-transition-old(root) {
-			z-index: 1;
-		}
-		::view-transition-new(root) {
-			z-index: 9999;
-		}
-		.dark::view-transition-old(root) {
-			z-index: 9999;
-		}
-		.dark::view-transition-new(root) {
-			z-index: 1;
-		}
-	}
+  img {
+    max-width: 100%;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+      display: block;
+    }
+    ::view-transition-old(root) {
+      z-index: 1;
+    }
+    ::view-transition-new(root) {
+      z-index: 9999;
+    }
+    .dark::view-transition-old(root) {
+      z-index: 9999;
+    }
+    .dark::view-transition-new(root) {
+      z-index: 1;
+    }
+  }
 </style>

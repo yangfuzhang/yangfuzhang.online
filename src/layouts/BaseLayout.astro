@@ -5,6 +5,7 @@ interface Props {
   title: string;
 }
 
+const environment = import.meta.env.MODE;
 const { title } = Astro.props;
 ---
 
@@ -44,23 +45,33 @@ const { title } = Astro.props;
 
     <!-- 内容区域 -->
     <slot />
-    <!-- Umami统计代码 -->
-    <script
-      async
-      src="https://stat.yangfuzhang.online/script.js"
-      data-website-id="99a18c70-6364-4662-8b20-ddf952491614"></script>
-    <!-- Google 统计代码 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26PQYDWXCK"
-    ></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
 
-      gtag("config", "G-26PQYDWXCK");
-    </script>
+    <!-- Umami统计代码 -->
+    {
+      environment === "production" && (
+        <script
+          is:inline
+          async
+          src="https://stat.yangfuzhang.online/script.js"
+          data-website-id="99a18c70-6364-4662-8b20-ddf952491614"
+        />
+      )
+    }
+    <!-- Google 统计代码 -->
+    {
+      environment === "production" && (
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-26PQYDWXCK"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+
+          gtag("config", "G-26PQYDWXCK");
+        </script>
+      )
+    }
     <!-- 谷歌广告 -->
     <!-- <script
       async

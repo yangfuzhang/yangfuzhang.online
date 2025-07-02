@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/BaseLayout.astro';
+import Layout from "../layouts/BaseLayout.astro";
 
 interface Props {
-	title: string;
+  title: string;
   posts: any[];
   baseUrl: string;
 }
@@ -13,59 +13,59 @@ const { title, posts, baseUrl } = Astro.props;
 <Layout title={title}>
   <main>
     {
-      posts.map(async post => {
+      posts.map(async (post) => {
         const { remarkPluginFrontmatter } = await post.render();
 
         return (
           <a href={`${baseUrl}/${post.slug}`}>
             <div class="post-item">
               <p>{post.data.title}</p>
-              <div class="post-metadata">
-                <span class="text-gradient">{post.data.pubDate}</span>
-                <span class="text-gradient">{remarkPluginFrontmatter.minutesRead}</span>
+              <div class="post-metadata text-gray-4">
+                <span>{post.data.pubDate}</span>
+                <span>{remarkPluginFrontmatter.minutesRead}</span>
               </div>
             </div>
           </a>
-        )
+        );
       })
     }
   </main>
 </Layout>
 
 <style lang="less">
-main {
-  margin: auto;
-  padding: 2rem 0;
-  width: 800px;
-  max-width: calc(100% - 2rem);
-  color: var(--primary-text-color);
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.post-item {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  color: var(--primary-text-color);
-
-  .post-metadata {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 14px;
+  main {
+    margin: auto;
+    padding: 2rem 0;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: var(--primary-text-color);
+    font-size: 16px;
+    line-height: 1.6;
   }
-}
 
-@media screen and (max-width: 576px) {
   .post-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--primary-text-color);
 
-    p {
-      margin: 0;
+    .post-metadata {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 14px;
     }
   }
-}
+
+  @media screen and (max-width: 576px) {
+    .post-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      margin-bottom: 1rem;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
 </style>

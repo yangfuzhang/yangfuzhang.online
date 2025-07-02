@@ -60,15 +60,13 @@ const { title } = Astro.props;
     <!-- Google 统计代码 -->
     {
       environment === "production" && (
-        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-26PQYDWXCK"></script>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-YP9E61N6BB"></script>
         <script is:inline>
           window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-          gtag("config", "G-26PQYDWXCK");
+          gtag('config', 'G-YP9E61N6BB');
         </script>
       )
     }

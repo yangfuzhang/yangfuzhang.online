@@ -11,10 +11,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "@astrojs/node": "^6.0.3",
-    "@astrojs/vue": "^3.0.4",
-    "astro": "^3.5.3",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "^9.4.4",
+    "@astrojs/vue": "^5.1.1",
+    "astro": "^5.14.1",
     "less": "^4.2.0",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",

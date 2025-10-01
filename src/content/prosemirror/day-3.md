@@ -4,11 +4,11 @@ title: Prosemirror自定义视图
 author: yangfuzhang
 description: Prosemirror自定义视图
 pubDate: Dec. 14
-prevUrl: /rich-editor
+prevUrl: /prosemirror-posts
 slug: custom-view
 ---
 
-Prosemirror有三种自定义视图的方式
+Prosemirror 有三种自定义视图的方式
 
 ### toDOM
 

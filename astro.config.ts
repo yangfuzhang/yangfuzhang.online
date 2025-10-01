@@ -1,19 +1,22 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
 import vue from "@astrojs/vue";
-import UnoCSS from 'unocss/astro'
-import { remarkReadingTime } from './remark-reading-time.mjs';
+import UnoCSS from "unocss/astro";
+import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
   output: "server",
   adapter: node({
-    mode: "standalone"
+    mode: "standalone",
   }),
   markdown: {
-    remarkPlugins: [remarkReadingTime]
+    remarkPlugins: [remarkReadingTime],
   },
-  integrations: [vue(), UnoCSS({
-    // injectReset: true,
-  })]
+  integrations: [
+    vue(),
+    UnoCSS({
+      // injectReset: true,
+    }),
+  ],
 });

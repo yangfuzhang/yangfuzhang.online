@@ -1,8 +1,0 @@
----
-import PostList from '../components/PostList.astro';
-import { getCollection } from 'astro:content';
-
-const prosemirrorEntries = await getCollection('prosemirror');
----
-
-<PostList title="代码编辑器" posts={prosemirrorEntries} baseUrl='prosemirror'>

@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { render } from "astro:content";
 
 interface Props {
   title: string;
@@ -10,14 +11,14 @@ interface Props {
 const { title, posts, baseUrl } = Astro.props;
 ---
 
-<Layout title={title}>
+<BaseLayout title={title}>
   <main>
     {
       posts.map(async (post) => {
-        const { remarkPluginFrontmatter } = await post.render();
+        const { remarkPluginFrontmatter } = await render(post);
 
         return (
-          <a href={`${baseUrl}/${post.slug}`}>
+          <a href={`${baseUrl}/${post.id}`}>
             <div class="post-item">
               <p>{post.data.title}</p>
               <div class="post-metadata text-gray-4">
@@ -30,7 +31,7 @@ const { title, posts, baseUrl } = Astro.props;
       })
     }
   </main>
-</Layout>
+</BaseLayout>
 
 <style lang="less">
   main {

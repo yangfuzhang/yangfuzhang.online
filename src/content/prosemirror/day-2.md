@@ -4,15 +4,15 @@ title: Prosemirror核心概念
 author: yangfuzhang
 description: Prosemirror核心概念
 pubDate: Nov. 26
-prevUrl: /rich-editor
+prevUrl: /prosemirror-posts
 slug: core-concepts
 ---
 
-个人觉得prosemirror的概念还是比较难理解的，在深入源码之前，有必要对这些概念有一个大致的了解。
- 
+个人觉得 prosemirror 的概念还是比较难理解的，在深入源码之前，有必要对这些概念有一个大致的了解。
+
 ### schema
 
-shema用于定义编辑器的文档模型，一个基本的schema定义如下：
+shema 用于定义编辑器的文档模型，一个基本的 schema 定义如下：
 
 ```typescript
 import { Schema } from "prosemirror-model";
@@ -22,7 +22,7 @@ const exampleSchema = new Schema({
   nodes: {
     // doc必须定义
     doc: {
-      content: "paragraph+"
+      content: "paragraph+",
     },
     paragraph: {
       content: "text*",
@@ -32,22 +32,26 @@ const exampleSchema = new Schema({
       parseDOM: [{ tag: "p" }],
       // 转换为DOM的规则。
       // 这条规则的意思是：如果遇到paragraph节点，就转换为p标签，0叫做“洞”（hole），表示可以插入内容
-      toDOM(node) { return ["p", 0] },
+      toDOM(node) {
+        return ["p", 0];
+      },
     },
-    text: {}
+    text: {},
   },
   marks: {
     strong: {
       parseDOM: [{ tag: "strong" }],
-      toDOM() { return ["strong"] }
-    }
-  }
+      toDOM() {
+        return ["strong"];
+      },
+    },
+  },
 });
 ```
 
 ### selection
 
-prosemirror的选区系统。
+prosemirror 的选区系统。
 
 ```typescript
 new Selection(
@@ -69,19 +73,19 @@ new Slice(
 
 ### transactions
 
-prosemirror借鉴了redux的思想，不直接修改state，而是在旧的state的基础上，通过dispatch(transaction)生成新的state。
+prosemirror 借鉴了 redux 的思想，不直接修改 state，而是在旧的 state 的基础上，通过 dispatch(transaction)生成新的 state。
 
 ### steps
 
-step是文档修改的最小单位，一个tranaction可以包含多个steps，保存在transaction的steps属性中。
+step 是文档修改的最小单位，一个 tranaction 可以包含多个 steps，保存在 transaction 的 steps 属性中。
 
 ### mapping
 
-文档经过一系列steps修改后，可以通过mapping将旧的位置映射到新的位置。
+文档经过一系列 steps 修改后，可以通过 mapping 将旧的位置映射到新的位置。
 
 ### commands
 
-编辑器命令，可以通过keymap建立键盘快捷键与命令之间的映射。Command函数接收state和可选的dispatch作为参数，返回boolean。
+编辑器命令，可以通过 keymap 建立键盘快捷键与命令之间的映射。Command 函数接收 state 和可选的 dispatch 作为参数，返回 boolean。
 
 ### plugins
 

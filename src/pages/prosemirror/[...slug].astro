@@ -1,5 +1,6 @@
 ---
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
+import PostLayout from "../../layouts/PostLayout.astro";
 
 const { slug } = Astro.params;
 
@@ -13,7 +14,9 @@ if (entry === undefined) {
   return Astro.redirect("/404");
 }
 
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await render(entry);
 ---
 
-<Content />
+<PostLayout frontmatter={remarkPluginFrontmatter}>
+  <Content />
+</PostLayout>

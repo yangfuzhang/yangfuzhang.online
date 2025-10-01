@@ -1,7 +1,8 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
 
 const prosemirrorCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/prosemirror" }),
   schema: z.object({
     title: z.string(),
     pubDate: z.string(),
@@ -9,7 +10,7 @@ const prosemirrorCollection = defineCollection({
 });
 
 const reactCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/react" }),
   schema: z.object({
     title: z.string(),
     pubDate: z.string(),
@@ -17,7 +18,7 @@ const reactCollection = defineCollection({
 });
 
 const vueCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/vue" }),
   schema: z.object({
     title: z.string(),
     pubDate: z.string(),
@@ -25,7 +26,7 @@ const vueCollection = defineCollection({
 });
 
 const snippetsCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/snippets" }),
   schema: z.object({
     title: z.string(),
     pubDate: z.string(),
@@ -33,8 +34,8 @@ const snippetsCollection = defineCollection({
 });
 
 export const collections = {
-  'prosemirror': prosemirrorCollection,
-  'react': reactCollection,
-  'vue': vueCollection,
-  'snippets': snippetsCollection,
+  prosemirror: prosemirrorCollection,
+  react: reactCollection,
+  vue: vueCollection,
+  snippets: snippetsCollection,
 };

@@ -12,20 +12,20 @@ slug: docker-registry
 
 ### 步骤一
 
-登录阿里云控制台，搜索 -> 容器镜像服务ACR，进入页面后点击左侧菜单-镜像工具-镜像加速器，阿里云给开发者分配了一个镜像加速地址，可以在这里获取，后面会用到。
+登录阿里云控制台，搜索 -> 容器镜像服务 ACR，进入页面后点击左侧菜单-镜像工具-镜像加速器，阿里云给开发者分配了一个镜像加速地址，可以在这里获取，后面会用到。
 
 ### 步骤二
 
 登录自己的云服务器进行配置。
 
-**以下针对Ubuntu和Centos**
+**以下针对 Ubuntu 和 Centos**
 
-> 1. 安装／升级Docker客户端
-推荐安装1.10.0以上版本的Docker客户端，参考文档[docker-ce](https://developer.aliyun.com/article/110806)
+> 1. 安装／升级 Docker 客户端
+>    推荐安装 1.10.0 以上版本的 Docker 客户端，参考文档[docker-ce](https://developer.aliyun.com/article/110806)
 
 > 2. 配置镜像加速器
-针对Docker客户端版本大于 1.10.0 的用户
-您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器
+>    针对 Docker 客户端版本大于 1.10.0 的用户
+>    您可以通过修改 daemon 配置文件/etc/docker/daemon.json 来使用加速器
 
 ```bash
 sudo mkdir -p /etc/docker
@@ -39,4 +39,3 @@ sudo systemctl restart docker
 ```
 
 以上。
-

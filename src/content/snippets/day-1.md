@@ -52,7 +52,8 @@ git push origin [newName] --set-upstream orign/newName
 
 ```
 
-### 查看当前仓库config
+### 查看当前仓库 config
+
 ```bash
 git config --list
 
@@ -60,7 +61,8 @@ git config --list
 git config -l
 ```
 
-### 查看全局config
+### 查看全局 config
+
 ```bash
 git config --global --list
 
@@ -68,7 +70,8 @@ git config --global --list
 git config --global -l
 ```
 
-### 修改当前仓库config
+### 修改当前仓库 config
+
 ```bash
 git config [key] [value]
 
@@ -76,16 +79,11 @@ git config [key] [value]
 git config user.name "your_name"
 ```
 
-### 修改全局config
+### 修改全局 config
+
 ```bash
 git config --global [key] [value]
 
 // 例如：修改user.name
 git config --global user.name "your_name"
 ```
-  
-
- 
-
-
-

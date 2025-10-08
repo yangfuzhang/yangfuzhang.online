@@ -11,7 +11,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="zh">
+<html lang="zh" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="码农代码笔记" />
@@ -19,27 +19,6 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <!-- 添加is:inline, 阻塞渲染，避免页面闪烁 -->
-    <script is:inline>
-      const theme = (() => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      })();
-
-      if (theme === "light") {
-        document.documentElement.classList.remove("dark");
-      } else {
-        document.documentElement.classList.add("dark");
-      }
-    </script>
   </head>
   <body class="min-w-screen min-h-screen bg-linear-to-t from-secondary to-white">
     <main class="min-h-screen max-w-[960px] p-4 m-auto flex flex-col items-center">

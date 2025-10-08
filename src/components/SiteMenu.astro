@@ -1,93 +1,31 @@
 ---
-// SiteMenu.astro
+const menus = [
+  {
+    name: "博客",
+    href: "#",
+  },
+  {
+    name: "项目",
+    href: "#",
+  },
+  {
+    name: "联系",
+    href: "#",
+  },
+];
 ---
-  <ul class="site-menu">
-    <li class="toggle-theme">
-      <span class="i-carbon-sun color-black dark:i-carbon-moon dark:color-white"></span>
-    </li>
-    <li>
-      <a href="https://github.com/yangfuzhang" target="_blank">
-        <span class="i-carbon-logo-github color-black dark:color-white"></span>
-      </a>
-    </li>
-  </ul>
-</template>
 
-<script lang="ts">
-const toggleThemeBtn = document.querySelector(".toggle-theme")
-const getTheme = () => {
-  if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-    return localStorage.getItem("theme");
-  }
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    return "dark";
-  }
-  return "light";
-}
-const toggleTheme = () => {
-  document.documentElement.classList.toggle("dark")
-  localStorage.setItem("theme", document.documentElement.classList.contains("dark")? "dark" : "light")
-}
-
-toggleThemeBtn?.addEventListener("click", (event) => {
-  const isAppearanceTransition = document.startViewTransition
-    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const isDark = getTheme() === 'dark'
-
-  if(!isAppearanceTransition) {
-    toggleTheme()
-    return
-  }
-
-  const x = event.clientX
-  const y = event.clientY
-  const endRadius = Math.hypot(
-    Math.max(x, innerWidth - x),
-    Math.max(y, innerHeight - y),
-  )
-
-  const transition = document.startViewTransition(async () => {
-    toggleTheme()
-  })
-
-  transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ]
-      document.documentElement.animate(
-        {
-          clipPath: isDark
-            ? clipPath
-            : [...clipPath].reverse(),
-        },
-        {
-          duration: 400,
-          easing: 'ease-out',
-          pseudoElement: isDark
-            ? '::view-transition-new(root)'
-            : '::view-transition-old(root)',
-        },
-      )
+<nav class="flex items-center gap-0">
+  {
+    menus.map((menu) => {
+      return (
+        <a
+          href={menu.href}
+          class="px-4 py-1 rounded-full cursor-pointer transition-all hover:bg-primary hover:text-primary-foreground hover:shadow"
+        >
+          {menu.name}
+        </a>
+      );
     })
-})
-</script>
-
-<style lang="less">
- .site-menu {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  li {
-    list-style: none;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: all 0.2s ease-in;
-
-    &:hover {
-      opacity: 1;
-    }
   }
-}
-</style>
+</nav>

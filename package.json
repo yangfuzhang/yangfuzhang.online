@@ -13,22 +13,21 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/node": "^9.4.4",
-    "@astrojs/vue": "^5.1.1",
+    "@lucide/astro": "^0.545.0",
+    "@tailwindcss/vite": "^4.1.14",
     "astro": "^5.14.1",
+    "install": "^0.13.0",
     "less": "^4.2.0",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
-    "typescript": "^5.2.2",
-    "vue": "^3.2.30"
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.23",
     "@typescript-eslint/parser": "^6.11.0",
-    "@unocss/preset-icons": "^0.57.7",
-    "@unocss/reset": "^0.57.7",
     "eslint": "^8.53.0",
     "eslint-plugin-astro": "^0.29.1",
-    "husky": "^8.0.0",
-    "unocss": "^0.57.7"
+    "husky": "^8.0.0"
   }
 }

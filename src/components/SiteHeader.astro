@@ -1,25 +1,13 @@
 ---
+import { Image } from "astro:assets";
 import SiteMenu from "./SiteMenu.astro";
 ---
 
-<header>
-  <h3 class="site-title"><a href="/">代码笔记</a></h3>
+<header class="w-full flex items-center justify-between">
+  <div class="flex items-center gap-2">
+    <a href="/">
+      <Image src="/logo.png" alt="logo" width="64" height="64" />
+    </a>
+  </div>
   <SiteMenu />
 </header>
-
-<style lang="less">
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    color: #fff;
-
-    .site-title {
-      font-size: 20px;
-      a {
-        color: var(--primary-text-color);
-      }
-    }
-  }
-</style>

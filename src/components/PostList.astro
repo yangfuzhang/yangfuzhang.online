@@ -12,16 +12,16 @@ const { title, posts, baseUrl } = Astro.props;
 ---
 
 <BaseLayout title={title}>
-  <main>
+  <div class="w-full flex flex-col gap-4 py-16">
     {
       posts.map(async (post) => {
         const { remarkPluginFrontmatter } = await render(post);
 
         return (
           <a href={`${baseUrl}/${post.id}`}>
-            <div class="post-item">
-              <p>{post.data.title}</p>
-              <div class="post-metadata text-gray-4">
+            <div>
+              <h2 class="">{post.data.title}</h2>
+              <div class="text-sm text-secondary-foreground">
                 <span>{post.data.pubDate}</span>
                 <span>{remarkPluginFrontmatter.minutesRead}</span>
               </div>
@@ -30,43 +30,5 @@ const { title, posts, baseUrl } = Astro.props;
         );
       })
     }
-  </main>
+  </div>
 </BaseLayout>
-
-<style lang="less">
-  main {
-    margin: auto;
-    padding: 2rem 0;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: var(--primary-text-color);
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  .post-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: var(--primary-text-color);
-
-    .post-metadata {
-      display: flex;
-      gap: 0.5rem;
-      font-size: 14px;
-    }
-  }
-
-  @media screen and (max-width: 576px) {
-    .post-item {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 4px;
-      margin-bottom: 1rem;
-
-      p {
-        margin: 0;
-      }
-    }
-  }
-</style>

@@ -9,18 +9,18 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title}>
-  <article class="markdown-post">
-    <h2 class="title">{frontmatter.title}</h2>
-    <p class="subtitle">
-      <span class="text-gradient"
-        >{frontmatter.pubDate} · {frontmatter.minutesRead}</span
-      >
+  <article class="markdown-post w-full py-8 flex flex-col gap-2">
+    <h1 class="text-2xl font-medium">{frontmatter.title}</h1>
+    <p class="text-sm text-secondary-foreground">
+      <span>{frontmatter.pubDate} · {frontmatter.minutesRead}</span>
     </p>
 
-    <slot />
+    <div class="my-2">
+      <slot />
+    </div>
 
     <a href={frontmatter.prevUrl}>
-      <span class="text-gradient">&gt; cd ..</span>
+      <span>&gt; cd ..</span>
     </a>
   </article>
 </BaseLayout>
@@ -28,27 +28,21 @@ const { frontmatter } = Astro.props;
 <style lang="less" is:global>
   article.markdown-post {
     margin: auto;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: var(--primary-text-color);
     font-size: 16px;
     line-height: 1.6;
 
-    .title {
-      margin: 0;
-    }
-
-    .subtitle {
-      margin: 0.1rem;
-      font-size: 14px;
-    }
-
     a {
-      color: var(--link-color);
+      color: var(--primary);
 
       &:hover {
         text-decoration: underline;
       }
+    }
+
+    h3 {
+      margin: 1.2rem 0;
+      font-weight: 700;
+      font-size: 1.2rem;
     }
 
     blockquote {
@@ -57,7 +51,6 @@ const { frontmatter } = Astro.props;
       margin: 1em 0;
       padding: 0.5rem 10px 0.5rem;
       quotes: "\201C" "\201D" "\2018" "\2019";
-      color: var(--markdown-blockquote-color);
     }
 
     pre {

@@ -27,7 +27,7 @@ export function SiteMenuItems() {
             onClick={() => {
               addToast({
                 title: "还没有内容哦",
-                description: "改天再来吧",
+                description: "欢迎关注公众号【独立开发老杨】",
                 color: "primary",
               });
             }}

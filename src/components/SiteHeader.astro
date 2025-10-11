@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import SiteMenu from "./SiteMenu.astro";
+import { SiteMenu } from "./SiteMenu.tsx";
 ---
 
 <header class="w-full flex items-center justify-between">
@@ -9,5 +9,6 @@ import SiteMenu from "./SiteMenu.astro";
       <Image src="/logo.png" alt="logo" width="64" height="64" />
     </a>
   </div>
-  <SiteMenu />
+
+  <SiteMenu client:load />
 </header>

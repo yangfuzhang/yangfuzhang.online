@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { Github, Twitter, ExternalLink } from "@lucide/astro";
+import { Button } from "@heroui/react";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const projects = [
@@ -26,6 +27,10 @@ const projects = [
       <h1 class="leading-10 md:leading-12 text-3xl">
         全栈开发工程师，专注于React、Nextjs技术栈
       </h1>
+
+      <Button color="primary" radius="sm" variant="flat"
+        >欢迎关注微信公众号【独立开发老杨】</Button
+      >
 
       <div class="mt-4 flex items-center gap-4">
         <a
@@ -76,14 +81,12 @@ const projects = [
         }
       </div>
     </div>
-
-    <footer
-      class="w-full flex items-center justify-center gap-2 text-secondary-foreground text-sm"
-    >
-      <a href="https://beian.miit.gov.cn/" target="_blank"
-        >鄂ICP备2023022007号</a
-      >
-      <span>©2025 代码笔记</span>
-    </footer>
   </section>
+
+  <footer
+    class="w-full flex items-center justify-center gap-2 text-secondary-foreground text-sm"
+  >
+    <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2023022007号</a>
+    <span>©2025 代码笔记</span>
+  </footer>
 </BaseLayout>

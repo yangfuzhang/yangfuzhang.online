@@ -4,6 +4,8 @@ import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 import tailwindcss from "@tailwindcss/vite";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   output: "server",
@@ -16,7 +18,7 @@ export default defineConfig({
     remarkPlugins: [remarkReadingTime],
   },
 
-  integrations: [],
+  integrations: [react()],
 
   vite: {
     plugins: [tailwindcss()],

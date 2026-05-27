@@ -1,4 +1,4 @@
-FROM node:21.0-alpine3.18
+FROM node:22-alpine
 WORKDIR /app
 COPY . .
 RUN npm config set registry https://registry.npmmirror.com

@@ -2,8 +2,8 @@ FROM node:22-alpine
 WORKDIR /app
 COPY . .
 RUN npm config set registry https://registry.npmmirror.com
-RUN npm install -g pnpm
-RUN pnpm install
+RUN npm install -g pnpm@10
+RUN pnpm install --frozen-lockfile
 RUN pnpm run build
 ENV HOST=0.0.0.0
 ENV PORT=3000

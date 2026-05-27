@@ -37,5 +37,13 @@
     "eslint": "^8.53.0",
     "eslint-plugin-astro": "^0.29.1",
     "husky": "^8.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@heroui/shared-utils",
+      "@tailwindcss/oxide",
+      "esbuild",
+      "sharp"
+    ]
   }
 }

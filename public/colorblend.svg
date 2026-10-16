@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ColorBlend">
+  <rect width="64" height="64" rx="4" fill="#F6F3EE"/>
+  <circle cx="26" cy="32" r="14" fill="#FF5A36"/>
+  <circle cx="38" cy="32" r="14" fill="#6A45FF"/>
+  <clipPath id="blend">
+    <circle cx="26" cy="32" r="14"/>
+  </clipPath>
+  <circle cx="38" cy="32" r="14" fill="#D736B4" clip-path="url(#blend)"/>
+</svg>

@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
+import { ToastHost } from "../providers/ToastProvider";
 
 interface Props {
   title: string;
@@ -11,25 +12,35 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="zh" class="light">
+<html lang="zh">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="码农代码笔记" />
+    <meta name="description" content="码农代码笔记 · 独立开发老杨" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Red+Hat+Mono:wght@500;700&family=Syne:wght@700;800&family=ZCOOL+QingKe+HuangYou&display=swap"
+      rel="stylesheet"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-w-screen min-h-screen bg-linear-to-t from-secondary to-white">
-    <main class="min-h-screen max-w-[960px] p-4 m-auto flex flex-col items-center">
-      <!-- 菜单 -->
-      <SiteHeader />
+  <body class="min-h-screen bg-paper text-ink antialiased">
+    <ToastHost client:load />
+    <div class="grain" aria-hidden="true"></div>
+    <div
+      class="pointer-events-none fixed inset-3 z-40 border-[3px] border-ink md:inset-4"
+      aria-hidden="true"
+    >
+    </div>
 
-      <!-- 内容区域 -->
+    <main class="relative z-10 mx-auto flex min-h-screen w-full max-w-[1100px] flex-col px-6 py-6 md:px-10 md:py-8">
+      <SiteHeader />
       <slot />
     </main>
 
-    <!-- Umami统计代码 -->
     {
       environment === "production" && (
         <script
@@ -37,26 +48,22 @@ const { title } = Astro.props;
           async
           src="https://stat.yangfuzhang.online/script.js"
           data-website-id="746c0ac1-e0a6-4592-96e9-bde5e103bb79"
-        />
+        ></script>
       )
     }
-    <!-- Google 统计代码 -->
     {
       environment === "production" && (
-        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-YP9E61N6BB"></script>
-        <script is:inline>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+        <>
+          <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-YP9E61N6BB"></script>
+          <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-          gtag('config', 'G-YP9E61N6BB');
-        </script>
+            gtag('config', 'G-YP9E61N6BB');
+          </script>
+        </>
       )
     }
-    <!-- 谷歌广告 -->
-    <!-- <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9752931686372898"
-      crossorigin="anonymous"></script> -->
   </body>
 </html>

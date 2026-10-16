@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Wheel Click">
+  <rect width="32" height="32" rx="7" fill="#F4F5F7"/>
+  <g transform="translate(16 17.2)">
+    <circle r="11.4" fill="#FFFFFF"/>
+    <path d="M0 0 L0 -11.2 A11.2 11.2 0 0 1 9.7 -5.6 Z" fill="#0E7490"/>
+    <path d="M0 0 L9.7 -5.6 A11.2 11.2 0 0 1 9.7 5.6 Z" fill="#DB2777"/>
+    <path d="M0 0 L9.7 5.6 A11.2 11.2 0 0 1 0 11.2 Z" fill="#7B61FF"/>
+    <path d="M0 0 L0 11.2 A11.2 11.2 0 0 1 -9.7 5.6 Z" fill="#16A34A"/>
+    <path d="M0 0 L-9.7 5.6 A11.2 11.2 0 0 1 -9.7 -5.6 Z" fill="#EAB308"/>
+    <path d="M0 0 L-9.7 -5.6 A11.2 11.2 0 0 1 0 -11.2 Z" fill="#EA580C"/>
+    <circle r="3.2" fill="#FFFFFF" stroke="#0E7490" stroke-width="1.15"/>
+    <circle r="0.9" fill="#0E7490"/>
+  </g>
+  <path d="M16 1.6 L18.35 5.7 H13.65 Z" fill="#0E7490"/>
+</svg>

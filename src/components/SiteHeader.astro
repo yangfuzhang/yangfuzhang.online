@@ -1,14 +1,19 @@
 ---
-import { Image } from "astro:assets";
 import { SiteMenu } from "./SiteMenu.tsx";
 ---
 
-<header class="w-full flex items-center justify-between">
-  <div class="flex items-center gap-2">
-    <a href="/">
-      <Image src="/logo.png" alt="logo" width="64" height="64" />
-    </a>
-  </div>
+<header class="rise mb-10 flex items-start justify-between gap-4 md:mb-14">
+  <a href="/" class="group flex items-center gap-3 no-underline">
+    <span
+      class="grid h-14 w-14 place-items-center border-[3px] border-ink bg-lime font-display text-xl font-extrabold leading-none brutal-shadow"
+    >
+      YF
+    </span>
+    <span class="flex flex-col leading-tight">
+      <span class="font-mono text-[11px] tracking-[0.22em] uppercase">yangfuzhang.online</span>
+      <span class="font-poster text-2xl leading-none">代码笔记</span>
+    </span>
+  </a>
 
   <SiteMenu client:load />
 </header>

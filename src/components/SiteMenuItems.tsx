@@ -2,13 +2,13 @@ import { addToast } from "@heroui/toast";
 
 const menus = [
   {
-    name: "博客",
-    href: "#",
-    toast: true,
+    name: "电脑",
+    href: "/computer",
+    toast: false,
   },
   {
     name: "项目",
-    href: "#projects",
+    href: "/#projects",
     toast: false,
   },
   {
